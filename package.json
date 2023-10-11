@@ -1,0 +1,17 @@
+{
+  "name": "win-ps",
+  "version": "1.0.0",
+  "description": "Get processes list for Windows, Fixed packaged runtime error",
+  "main": "src/index.js",
+  "repository": "https://github.com/r3x5ur/win-ps.git",
+  "author": "r3x5ur",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ]
+}
