@@ -3,8 +3,6 @@ const os = require('os')
 const fs = require('fs')
 const execFileSync = require('child_process').execFileSync
 
-const tmpFilename = Math.random().toString(36).slice(2) + '.exe'
-
 function isPackaged() {
   if (!process.pkg) return false
   return 'entrypoint' in process.pkg && /^C:[\\\/]snapshot/.test(process.pkg.entrypoint)
@@ -29,7 +27,7 @@ function getBinPath() {
   }
   let binPath = path.join(__dirname, 'vendor', bin)
   if (isPackaged()) {
-    const target = path.resolve(os.tmpdir(), tmpFilename)
+    const target = path.resolve(os.tmpdir(), path.basename(binPath))
     if (!fs.existsSync(target)) fs.copyFileSync(binPath, target)
     binPath = target
   }
@@ -51,13 +49,6 @@ function ps() {
       name,
     }))
 }
-
-process.on('exit', () => {
-  if (isPackaged()) {
-    const binPath = getBinPath()
-    if (fs.existsSync(binPath)) fs.unlinkSync(binPath)
-  }
-})
 
 exports.ps = ps
 module.exports = {ps}
