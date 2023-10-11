@@ -11,6 +11,6 @@ yarn add github:r3x5ur/win-ps
 ## Usage
 
 ```js
-const ps = require('win-ps');
+const { ps } = require('win-ps');
 console.log(ps())
 ```
